@@ -1,0 +1,48 @@
+# Node (React)
+node_modules/
+build/
+npm-debug.log
+yarn-error.log
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Operating system files
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Go
+/vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/go.sum
+/go.mod
+
+# Compiled Go binaries
+/bin/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
