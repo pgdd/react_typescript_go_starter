@@ -1,0 +1,88 @@
+definitions:
+  models.Account:
+    properties:
+      bic:
+        type: string
+      iban:
+        type: string
+    type: object
+  models.Transfer:
+    properties:
+      amount:
+        type: number
+      destinationAccount:
+        $ref: '#/definitions/models.Account'
+      sourceAccount:
+        $ref: '#/definitions/models.Account'
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample server for a Go REST API.
+  title: Go REST API
+  version: "1"
+paths:
+  /accounts:
+    post:
+      consumes:
+      - application/json
+      description: Add a new account
+      parameters:
+      - description: Account Info
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/models.Account'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Account'
+      summary: Create new account
+      tags:
+      - accounts
+  /accounts/{iban}:
+    get:
+      description: Retrieve details of an account
+      parameters:
+      - description: Account IBAN
+        in: path
+        name: iban
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Account'
+      summary: Get account details
+      tags:
+      - accounts
+  /transfers:
+    post:
+      consumes:
+      - application/json
+      description: Perform a SEPA transfer from one account to another
+      parameters:
+      - description: Transfer Info
+        in: body
+        name: transfer
+        required: true
+        schema:
+          $ref: '#/definitions/models.Transfer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transfer initiated successfully
+          schema:
+            type: string
+      summary: Initiate a SEPA transfer
+      tags:
+      - transfers
+swagger: "2.0"
